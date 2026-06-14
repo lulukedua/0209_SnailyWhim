@@ -46,6 +46,8 @@ dependencies:
   image_picker: ^1.1.2
   intl: ^0.20.2
   smooth_page_indicator: ^1.2.0
+  url_launcher: ^6.3.2
+  webview_flutter: ^4.8.0
 
 flutter_native_splash:
   color: "#FFF6F9"
