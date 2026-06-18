@@ -20,16 +20,6 @@ class UserModel extends Equatable {
   bool get isAdmin => role == 'admin';
   bool get isUser => role == 'user';
 
-  // factory UserModel.fromJson(Map<String, dynamic> json) {
-  //   return UserModel(
-  //     id: json['id'],
-  //     nama: json['nama'] ?? '',
-  //     imageUrl: json['image_url'],
-  //     role: json['role'] ?? '',
-  //     cabangId: json['cabang_id'],
-  //   );
-  // }
-
   @override
   List<Object?> get props => [id, email, nama, role, imageUrl, cabangId];
 }
