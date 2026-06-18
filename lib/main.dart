@@ -1,36 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:snailywhim/core/services/notification_services.dart';
+import 'package:snailywhim/core/widgets/notification_badge.dart';
+import 'package:snailywhim/data/repositories/auth_repository.dart';
+import 'package:snailywhim/data/repositories/cart_repository.dart';
+import 'package:snailywhim/data/repositories/category_repository.dart';
+import 'package:snailywhim/data/repositories/order_repository.dart';
+import 'package:snailywhim/data/repositories/product_repository.dart';
+import 'package:snailywhim/logic/bloc/auth/auth_bloc.dart';
+import 'package:snailywhim/logic/bloc/auth/auth_event.dart';
+import 'package:snailywhim/logic/bloc/cart/cart_bloc.dart';
+import 'package:snailywhim/logic/bloc/cart/cart_event.dart';
+import 'package:snailywhim/logic/bloc/category/category_bloc.dart';
+import 'package:snailywhim/logic/bloc/order/order_bloc.dart';
+import 'package:snailywhim/logic/bloc/product/product_bloc.dart';
+import 'package:snailywhim/screen/auth/login_page.dart';
+import 'package:snailywhim/screen/auth/register_page.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+  );
+  await NotificationService().init();
+  final badgeProvider = NotificationBadgeProvider();
+  await badgeProvider.loadFromStorage();
+  runApp(
+    ChangeNotifierProvider.value(
+      value: badgeProvider,
+      // create: (_) => NotificationBadgeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) =>
+              AuthBloc(repository: AuthRepository())..add(AppStarted()),
+        ),
+        BlocProvider(
+          create: (_) =>
+              CartBloc(repository: CartRepository())..add(LoadCart()),
+        ),
+        BlocProvider(
+          create: (_) => ProductBloc(repository: ProductRepository()),
+        ),
+        BlocProvider(
+          create: (_) => OrderBloc(
+            repository: OrderRepository(),
+            productRepository: ProductRepository(),
+          ),
+        ),
+        BlocProvider(
+          create: (_) => CategoryBloc(repository: CategoryRepository()),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          fontFamily: 'Cakewalk',
+          colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        ),
+        home: const LoginPage(),
+        routes: {
+          '/login': (_) => const LoginPage(),
+          '/register': (_) => const RegisterPage(),
+        },
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
