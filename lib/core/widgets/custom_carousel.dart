@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class HomeBannerCarousel extends StatelessWidget {
-  const HomeBannerCarousel({super.key});
+  final List<String> images = [
+    'assets/img/car1.png',
+    'assets/img/car2.png',
+    'assets/img/car3.png',
+  ];
+  HomeBannerCarousel({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +21,11 @@ class HomeBannerCarousel extends StatelessWidget {
               color: Colors.grey.shade300,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Center(
-              child: Text(
-                "Banner ${index + 1}",
-                style: const TextStyle(fontSize: 18),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.asset(
+                images[index],
+                fit: BoxFit.cover,
               ),
             ),
           );
