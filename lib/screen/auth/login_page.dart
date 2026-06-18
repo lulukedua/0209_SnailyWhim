@@ -159,9 +159,21 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         }
                       },
-                      onGoogleLogin: () {},
+                      onGoogleLogin: () {
+                        AppSnackbar.show(
+                          context,
+                          title: 'Informasi',
+                          message: 'Mohon maaf fitur ini tidak dikembangkan',
+                          type: SnackType.info,
+                        );
+                      },
                       onForgotPassword: () {
-                        Navigator.pushNamed(context, '/forgot-password');
+                        AppSnackbar.show(
+                          context,
+                          title: 'Informasi',
+                          message: 'Mohon maaf fitur ini tidak dikembangkan',
+                          type: SnackType.info,
+                        );
                       },
                       onSwitchMode: () {
                         Navigator.push(
