@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:snailywhim/core/helper/error_helper.dart';
 import 'package:snailywhim/data/repositories/category_repository.dart';
 import 'package:snailywhim/logic/bloc/category/category_event.dart';
 import 'package:snailywhim/logic/bloc/category/category_state.dart';
@@ -23,7 +24,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
           name: 'CategoryBloc',
           error: e,
         );
-        emit(CategoryError(e.toString()));
+        emit(CategoryError(AppErrorMessage.from(e)));
       }
     });
     on<CreateCategory>((event, emit) async {
@@ -39,7 +40,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
           name: 'CategoryBloc',
           error: e,
         );
-        emit(CategoryError(e.toString()));
+        emit(CategoryError(AppErrorMessage.from(e)));
       }
     });
     on<UpdateCategory>((event, emit) async {
@@ -58,7 +59,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
           name: 'CategoryBloc',
           error: e,
         );
-        emit(CategoryError(e.toString()));
+        emit(CategoryError(AppErrorMessage.from(e)));
       }
     });
     on<DeleteCategory>((event, emit) async {
@@ -74,7 +75,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
           name: 'CategoryBloc',
           error: e,
         );
-        emit(CategoryError(e.toString()));
+        emit(CategoryError(AppErrorMessage.from(e)));
       }
     });
   }

@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:snailywhim/core/helper/error_helper.dart';
 import 'dart:developer' as developer;
 import 'package:snailywhim/data/repositories/auth_repository.dart';
 import 'package:snailywhim/logic/bloc/auth/auth_event.dart';
@@ -36,7 +37,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(Authenticated(user));
       developer.log('Login Success: ${user.email}', name: 'AuthBloc');
     } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(AuthError(AppErrorMessage.from(e)));
       developer.log('Login Error: $e', name: 'AuthBloc');
     }
   }
@@ -54,10 +55,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
       emit(Unauthenticated());
       developer.log('Register Success', name: 'AuthBloc');
-    }
-    catch (e) {
+    } catch (e) {
       developer.log('Register Error: $e', name: 'AuthBloc');
-      emit(AuthError(e.toString()));
+      emit(AuthError(AppErrorMessage.from(e)));
     }
   }
 
@@ -67,7 +67,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(Unauthenticated());
       developer.log('Logout Success', name: 'AuthBloc');
     } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(AuthError(AppErrorMessage.from(e)));
     }
   }
 }

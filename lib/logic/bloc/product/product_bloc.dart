@@ -1,5 +1,6 @@
 import 'dart:developer' as developer;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:snailywhim/core/helper/error_helper.dart';
 import 'package:snailywhim/data/models/product_model.dart';
 import 'package:snailywhim/data/repositories/product_repository.dart';
 import 'package:snailywhim/logic/bloc/product/product_event.dart';
@@ -34,7 +35,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           name: 'Product Bloc',
           error: e,
         );
-        emit(ProductError(e.toString()));
+        emit(ProductError(AppErrorMessage.from(e)));
       }
     });
 
@@ -59,7 +60,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           name: 'Product Bloc',
           error: e,
         );
-        emit(ProductError(e.toString()));
+        emit(ProductError(AppErrorMessage.from(e)));
       }
     });
 
@@ -76,7 +77,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           name: 'Product Bloc',
           error: e,
         );
-        emit(ProductError(e.toString()));
+        emit(ProductError(AppErrorMessage.from(e)));
       }
     });
     on<UpdateProduct>((event, emit) async {
@@ -88,7 +89,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         add(FetchProduct());
       } catch (e) {
         developer.log('Gagal update produk', error: e, name: 'ProductBloc');
-        emit(ProductError(e.toString()));
+        emit(ProductError(AppErrorMessage.from(e)));
       }
     });
     on<DeleteProduct>((event, emit) async {
@@ -100,7 +101,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         add(FetchProduct());
       } catch (e) {
         developer.log('Gagal hapus produk', error: e, name: 'ProductBloc');
-        emit(ProductError(e.toString()));
+        emit(ProductError(AppErrorMessage.from(e)));
       }
     });
     on<SearchProduct>((event, emit) async {
@@ -135,7 +136,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           ),
         );
       } catch (e) {
-        emit(ProductError(e.toString()));
+        emit(ProductError(AppErrorMessage.from(e)));
       }
     });
 
@@ -160,7 +161,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           ),
         );
       } catch (e) {
-        emit(ProductError(e.toString()));
+        emit(ProductError(AppErrorMessage.from(e)));
       }
     });
   }

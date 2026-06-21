@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:snailywhim/core/helper/error_helper.dart';
 import 'package:snailywhim/core/helper/image_picker_helper.dart';
 import 'package:snailywhim/core/services/notification_services.dart';
 import 'package:snailywhim/core/theme/colors.dart';
@@ -51,8 +52,8 @@ class _ProfilePageState extends State<ProfilePage> {
       if (mounted) {
         AppSnackbar.show(
           context,
-          title: 'Gagal',
-          message: e.toString(),
+          title: 'Error',
+          message: AppErrorMessage.from(e),
           type: SnackType.error,
         );
       }

@@ -1,5 +1,6 @@
 import 'dart:developer' as developer;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:snailywhim/core/helper/error_helper.dart';
 import 'package:snailywhim/data/models/order_model.dart';
 import 'package:snailywhim/data/repositories/order_repository.dart';
 import 'package:snailywhim/data/repositories/product_repository.dart';
@@ -52,7 +53,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           ),
         );
       } catch (e) {
-        emit(OrderError(e.toString()));
+        emit(OrderError(AppErrorMessage.from(e)));
       }
     });
 
@@ -97,7 +98,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           ),
         );
       } catch (e) {
-        emit(OrderError(e.toString()));
+        emit(OrderError(AppErrorMessage.from(e)));
       }
     });
 
@@ -133,7 +134,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         emit(OrderDetailLoaded(order, itemImages: itemImages));
       } catch (e) {
-        emit(OrderError(e.toString()));
+        emit(OrderError(AppErrorMessage.from(e)));
       }
     });
 
@@ -152,7 +153,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           ),
         );
       } catch (e) {
-        emit(OrderError(e.toString()));
+        emit(OrderError(AppErrorMessage.from(e)));
       }
     });
 
@@ -167,7 +168,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         emit(OrderUpdatedSuccess());
       } catch (e) {
-        emit(OrderError(e.toString()));
+        emit(OrderError(AppErrorMessage.from(e)));
       }
     });
 
@@ -184,7 +185,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       } catch (e) {
         developer.log(e.toString(), name: 'OrderBloc');
 
-        emit(OrderError(e.toString()));
+        emit(OrderError(AppErrorMessage.from(e)));
       }
     });
     on<DeleteOrder>((event, emit) async {
@@ -195,7 +196,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         emit(OrderUpdatedSuccess());
       } catch (e) {
-        emit(OrderError(e.toString()));
+        emit(OrderError(AppErrorMessage.from(e)));
       }
     });
     on<SaveMidtransData>((event, emit) async {
@@ -206,7 +207,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           midtransOrderId: event.midtransOrderId,
         );
       } catch (e) {
-        emit(OrderError(e.toString()));
+        emit(OrderError(AppErrorMessage.from(e)));
       }
     });
 
@@ -268,7 +269,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           ),
         );
       } catch (e) {
-        emit(OrderError(e.toString()));
+        emit(OrderError(AppErrorMessage.from(e)));
       }
     });
   }
