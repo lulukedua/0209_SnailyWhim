@@ -10,18 +10,168 @@ SnailyWhim is a Flutter-based mobile application designed to provide an engaging
 
 ---
 
-## ✨ Features
+## Detail Pengembang
+> **Nama**: Lu'lu' Luthfiah <br>
+> **NIM**: 20230140209 <br>
+> **Mata Kuliah**: Pengembangan Aplikasi Mobile Lanjut (PAML)
+---
 
-* User Authentication
-* User Profile Management
-* Infinite Scroll Pagination
-* Push Notifications
-* Persistent Local Storage
-* External URL Integration
-* WebView Support
-* Custom Splash Screen
-* Custom App Icon
-* Responsive User Interface
+## Product Requirement Document (PRD)
+
+### Problem Statement
+
+Proses pemesanan bunga pada florist umumnya masih dilakukan melalui chat atau media sosial, sehingga sering menimbulkan kendala seperti keterlambatan respons, kesalahan pencatatan pesanan, kesulitan memantau stok produk, serta minimnya transparansi terhadap status pesanan pelanggan.
+
+Di sisi pengelola bisnis, pengelolaan produk, kategori, stok, dan pesanan yang dilakukan secara manual juga berpotensi menyebabkan ketidaksesuaian data dan menurunkan efisiensi operasional.
+
+Oleh karena itu, diperlukan sebuah aplikasi mobile yang mampu menyediakan proses pemesanan bunga secara digital, terintegrasi, dan real-time untuk meningkatkan pengalaman pelanggan sekaligus mempermudah pengelolaan bisnis florist.
+
+---
+
+### Proposed Solution
+
+SnailyWhim merupakan aplikasi mobile berbasis Flutter yang dirancang untuk memfasilitasi proses pemesanan produk florist secara digital. Aplikasi ini mengintegrasikan layanan Supabase sebagai backend utama untuk mengelola autentikasi, database, penyimpanan file, serta sinkronisasi data secara real-time.
+
+Melalui aplikasi ini, pelanggan dapat melakukan pencarian produk, menambahkan produk ke keranjang, melakukan checkout, memilih jadwal pengambilan (pickup), melakukan pembayaran, serta memantau status pesanan secara langsung. Sementara itu, administrator dapat mengelola produk, kategori, stok, dan pesanan melalui sistem yang terpusat.
+
+---
+
+### Feature List
+
+#### User Features
+
+* Registrasi dan Login Akun
+* Melihat Katalog Produk Florist
+* Pencarian dan Filter Produk
+* Melihat Detail Produk
+* Menambahkan Produk ke Keranjang
+* Mengelola Keranjang Belanja
+* Checkout dan Pembuatan Pesanan
+* Pemilihan Cabang Pickup
+* Penjadwalan Pickup Pesanan
+* Pembayaran Pesanan
+* Melihat Riwayat Pesanan
+* Melacak Status Pesanan Secara Real-time
+* Push Notification Perubahan Status Pesanan
+* Manajemen Profil Pengguna
+
+#### Admin Features
+
+* Login Admin
+* Dashboard Monitoring
+* Manajemen Produk (CRUD)
+* Manajemen Kategori (CRUD)
+* Manajemen Stok Produk
+* Manajemen Pesanan
+* Pembaruan Status Pesanan
+* Monitoring Pembayaran
+
+#### Technical Features
+
+* Supabase Authentication
+* PostgreSQL Database
+* Supabase Storage
+* Supabase Realtime
+* State Management menggunakan BLoC
+* Repository Pattern
+* Infinite Pagination
+* Local Storage
+* Push Notification
+* Responsive UI
+
+---
+
+### Weekly Development Progress
+
+#### Week 1 — Backend & Database Setup
+
+**Objectives**
+
+* Menyiapkan fondasi backend aplikasi.
+
+**Activities**
+
+* Konfigurasi proyek Flutter dan Supabase
+* Perancangan Entity Relationship Diagram (ERD)
+* Implementasi database PostgreSQL
+* Pembuatan tabel dan relasi data
+* Konfigurasi Supabase Authentication
+* Konfigurasi Row Level Security (RLS)
+* Setup Supabase Storage
+
+**Deliverables**
+
+* Backend siap digunakan dan terhubung dengan aplikasi.
+
+---
+
+#### Week 2 — Data Layer & State Management
+
+**Objectives**
+
+* Mengimplementasikan arsitektur aplikasi dan alur data.
+
+**Activities**
+
+* Pembuatan Data Models
+* Implementasi Remote Data Sources
+* Implementasi Repository Pattern
+* Implementasi BLoC Architecture
+* Pembuatan Events dan States
+* Integrasi Supabase dengan Repository
+* Implementasi Authentication Flow
+
+**Deliverables**
+
+* Struktur aplikasi modular dan scalable dengan alur data yang terorganisasi.
+
+---
+
+#### Week 3 — User Interface Development
+
+**Objectives**
+
+* Mengembangkan tampilan aplikasi berdasarkan kebutuhan pengguna.
+
+**Activities**
+
+* Implementasi Splash Screen
+* Implementasi Authentication Pages
+* Implementasi Home & Product Catalog
+* Implementasi Product Detail
+* Implementasi Cart Page
+* Implementasi Checkout Page
+* Implementasi Order History
+* Implementasi Profile Page
+* Integrasi UI dengan BLoC
+* Implementasi Loading, Error, dan Empty State
+
+**Deliverables**
+
+* Seluruh halaman utama aplikasi dapat digunakan dan terintegrasi dengan backend.
+
+---
+
+#### Week 4 — Feature Integration & Testing
+
+**Objectives**
+
+* Menyempurnakan fitur dan memastikan aplikasi berjalan stabil.
+
+**Activities**
+
+* Integrasi Push Notification
+* Implementasi Local Storage
+* Implementasi Infinite Pagination
+* Pengujian Fungsionalitas
+* Bug Fixing
+* Optimasi Performa
+* Finalisasi Asset dan Branding
+* Persiapan Release Build
+
+**Deliverables**
+
+* Aplikasi siap digunakan dan memenuhi kebutuhan pengguna serta administrator.
 
 ---
 
@@ -71,7 +221,7 @@ SnailyWhim is a Flutter-based mobile application designed to provide an engaging
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 lib/
@@ -241,29 +391,6 @@ SnailyWhim utilizes Supabase services:
 * PostgreSQL Database
 * Storage
 * Realtime Services
-
----
-
-## 🎨 Assets
-
-Project assets include:
-
-```text
-assets/
-├── fonts/
-│   ├── ArtPostBlack.ttf
-│   └── Cakewalk.ttf
-│
-├── gif/
-│   └── success.gif
-│
-└── img/
-    ├── logo.png
-    ├── logo.svg
-    ├── logotanpateks.png
-    ├── flower.png
-    └── kumbang.png
-```
 
 ---
 
